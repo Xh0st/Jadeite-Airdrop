@@ -3,20 +3,67 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-p {
+#clockdiv{
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  font-weight: 100;
+  font-weight: bold;
   text-align: center;
-  font-size: 60px;
-  margin-top: 0px;
+  font-size: 30px;
+  display: inline-block;
+}
+#clockdiv > div{
+  padding: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 1px;
+  display: inline-block;
+}
+#days, #hours, #minutes, #seconds{
+  padding: 25px;
+  border-radius: 10px 100px / 120px;
+  background: linear-gradient(to right, #6E5CA2 , #189885);
+}
+@media screen and (max-width: 1100px){
+    #days, #hours, #minutes, #seconds{
+        padding: 14px;
+        border-radius: 10px 100px / 120px;
+        background: linear-gradient(to right, #6E5CA2 , #189885);
+        display: inline-block;
+    }
+}
+#smalltext{
+  color: #fff;
+  padding-top: 5px;
+  font-size: 16px;
+  text-align: center;
 }
 </style>
 </head>
 <body>
 
-<p id="demo"></p>
+<center><div id="clockdiv">
+  <div>
+    <div id="days"></div>
+    <div id="smalltext">Days</div>
+  </div>
+  <div>
+    <div id="hours"></div>
+    <div id="smalltext">Hours</div>
+  </div>
+  <div>
+    <div id="minutes"></div>
+    <div id="smalltext">Minutes</div>
+  </div>
+  <div>
+    <div id="seconds"></div>
+    <div id="smalltext">Seconds</div>
+  </div>
+</div></center>
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+var countDownDate = new Date("Jul 31, 2021 23:59:59").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -32,15 +79,20 @@ var x = setInterval(function() {
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = ('0' + hours).slice(-2);
+  document.getElementById("minutes").innerHTML = ('0' + minutes).slice(-2);
+  document.getElementById("seconds").innerHTML = ('0' + seconds).slice(-2);
+
     
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("days").innerHTML = "00";
+    document.getElementById("hours").innerHTML = "00";
+    document.getElementById("minutes").innerHTML = "00";
+    document.getElementById("seconds").innerHTML = "00";
   }
 }, 1000);
 </script>
